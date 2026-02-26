@@ -1,0 +1,71 @@
+{
+  "compilerOptions": {
+    // Target ES2024 because Node.js 24 has native support for all ES2024 features
+    // This ensures TypeScript doesn't downlevel modern syntax unnecessarily
+    "target": "ES2024",
+
+    // NodeNext is required for ES modules (.mjs or "type": "module" in package.json)
+    // It handles import/export syntax correctly and enforces proper file extensions in imports
+    "module": "NodeNext",
+
+    // Matches the module setting - required for proper path resolution with ES modules
+    // Standard "node" resolution doesn't work correctly with ESM imports
+    "moduleResolution": "NodeNext",
+
+    // Include ES2024 type definitions (Array.prototype.toSorted, Promise.withResolvers, etc.)
+    // These are the built-in JavaScript APIs available in Node.js 24
+    "lib": ["ES2024"],
+
+    // STRICT MODE: This is the backend equivalent of React's strict mode, but better!
+    // Enables 12 strictness checks at once - catches null/undefined errors, implicit any,
+    // unchecked index access, and more. For backends, this is CRITICAL because:
+    // - API failures are harder to debug than UI bugs
+    // - Type safety prevents runtime crashes in production
+    // - Database/IO operations fail silently with bad types
+    // Unlike React's strict mode (which is for detecting side effects), TS strict mode
+    // is about type safety. You absolutely want this in backend code.
+    "strict": true,
+
+    // Allows default imports from CommonJS modules (like express) to work smoothly
+    // Without this, you'd need: import * as express from 'express' instead of import express
+    "esModuleInterop": true,
+
+    // Skips type checking of all declaration files (*.d.ts) in node_modules
+    // Speeds up compilation significantly - we only care about our own code's types
+    "skipLibCheck": true,
+
+    // Prevents issues when developing on Windows (case-insensitive) and deploying to Linux (case-sensitive)
+    // Catches errors like: import './Server' when file is named './server.ts'
+    "forceConsistentCasingInFileNames": true,
+
+    // Output directory for compiled JavaScript files (production build)
+    // TypeScript will compile all .ts files to .js files in this folder
+    "outDir": "./dist",
+
+    // Generate source maps for debugging production builds
+    // Maps the compiled JS back to original TS source when debugging
+    "sourceMap": true,
+
+    // Clean output directory before each build to remove stale files
+    // Prevents old .js files from lingering when you rename or delete .ts files
+    "rootDir": ".",
+
+    // Warns about declared variables that are never read
+    // Catches dead code and typos in variable names
+    "noUnusedLocals": true,
+
+    // Warns about function parameters that are never used
+    // Helps keep APIs clean and catches unused arguments (prefix with _ to ignore)
+    "noUnusedParameters": true,
+
+    // Ensures all code paths in a function return a value (when return type is specified)
+    // Prevents functions that accidentally return undefined
+    "noImplicitReturns": true,
+
+    // Prevents fallthrough in switch statements without explicit 'break' or 'return'
+    // Common source of bugs - catches cases like: case 1: doSomething(); case 2: ...
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}
