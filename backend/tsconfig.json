@@ -62,6 +62,17 @@
     // Prevents functions that accidentally return undefined
     "noImplicitReturns": true,
 
+    // Allows importing .ts extensions in imports when using noEmit
+    // Required for --experimental-strip-types support with NodeNext module resolution
+    "allowImportingTsExtensions": true,
+
+    // Path aliases - maps #/* to the project root
+    // This must match the "imports" field in package.json
+    "baseUrl": ".",
+    "paths": {
+      "#*": ["./*"]
+    },
+
     // Prevents fallthrough in switch statements without explicit 'break' or 'return'
     // Common source of bugs - catches cases like: case 1: doSomething(); case 2: ...
     "noFallthroughCasesInSwitch": true

@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import { env } from "#config/env.ts";
+import uploadRouter from "#routes/upload.ts";
 
 const server = express();
 
@@ -11,5 +13,7 @@ server.use(
   }),
 );
 
-const PORT = 3003;
-server.listen(PORT, () => console.log(`Backend is running on port ${PORT}`));
+// Routes
+server.use("/api/upload", uploadRouter);
+
+server.listen(env.PORT, () => console.log(`Backend is running on port ${env.PORT}`));
