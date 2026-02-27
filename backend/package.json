@@ -9,16 +9,15 @@
     "#*": "./*"
   },
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "dev": "node --watch --experimental-strip-types --env-file=.env server.ts",
-    "typecheck": "tsc --noEmit"
+    "start": "tsx --env-file=.env server.ts",
+    "dev": "tsx watch --env-file=.env server.ts"
   },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "multer": "^2.0.2",
     "pino": "^10.3.1",
+    "tsx": "^4.21.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {

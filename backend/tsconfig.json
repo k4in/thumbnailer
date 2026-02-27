@@ -38,17 +38,8 @@
     // Catches errors like: import './Server' when file is named './server.ts'
     "forceConsistentCasingInFileNames": true,
 
-    // Output directory for compiled JavaScript files (production build)
-    // TypeScript will compile all .ts files to .js files in this folder
-    "outDir": "./dist",
-
-    // Generate source maps for debugging production builds
-    // Maps the compiled JS back to original TS source when debugging
+    // Generate source maps for debugging
     "sourceMap": true,
-
-    // Clean output directory before each build to remove stale files
-    // Prevents old .js files from lingering when you rename or delete .ts files
-    "rootDir": ".",
 
     // Warns about declared variables that are never read
     // Catches dead code and typos in variable names
@@ -62,9 +53,9 @@
     // Prevents functions that accidentally return undefined
     "noImplicitReturns": true,
 
-    // Allows importing .ts extensions in imports when using noEmit
-    // Required for --experimental-strip-types support with NodeNext module resolution
+    // Required for tsx - allows importing .ts extensions
     "allowImportingTsExtensions": true,
+    "noEmit": true,
 
     // Path aliases - maps #/* to the project root
     // This must match the "imports" field in package.json
